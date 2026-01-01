@@ -1,0 +1,10 @@
+<p-sidebar [(visible)]="true" styleClass="w-64">
+      <div class="p-4">
+        <h3 class="font-bold text-lg mb-4">Navigation</h3>
+        <ul class="space-y-2">
+          <li><a routerLink="/home" class="block p-2 hover:bg-gray-200 rounded">Home</a></li>
+          <li><a routerLink="/about" class="block p-2 hover:bg-gray-200 rounded">About</a></li>
+          <li *ngIf="authService.isLoggedIn()"><a routerLink="/admin" class="block p-2 hover:bg-gray-200 rounded">Admin Dashboard</a></li>
+        </ul>
+      </div>
+    </p-sidebar>

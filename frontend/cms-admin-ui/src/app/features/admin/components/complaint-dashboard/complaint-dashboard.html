@@ -1,0 +1,45 @@
+<p-card header="Complaint Tracking Dashboard">
+  <div class="mb-4">
+    <p-dropdown 
+      [options]="teams" 
+      [(ngModel)]="selectedTeam" 
+      optionLabel="name" 
+      placeholder="Select Team for Assignment/Reassignment"
+      class="w-full md:w-14rem">
+    </p-dropdown>
+  </div>
+
+  <p-table #dt [value]="complaints" [paginator]="true" [rows]="10" responsiveLayout="scroll">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Ticket ID</th>
+        <th>Category</th>
+        <th>Priority</th>
+        <th>Status</th>
+        <th>SLA Penalty</th>
+        <th>Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-complaint>
+      <tr>
+        <td>{{ complaint.ticketId }}</td>
+        <td>{{ complaint.category }}</td>
+        <td>
+          <span class="font-bold" [ngStyle]="{ color: complaint.priority === 'P0' ? '#800000' : '#982B1C' }">
+            {{ complaint.priority | statusPriority:'priority' }}
+          </span>
+        </td>
+        <td>{{ complaint.status | statusPriority:'status' }}</td>
+        <td class="font-bold text-red-600">{{ complaint.slaPenaltyPoints }}</td>
+        <td>
+          <button pButton label="Assign" icon="pi pi-users" class="p-button-sm mr-2" 
+                  (click)="assign(complaint)" [disabled]="!selectedTeam"></button>
+          <button pButton label="Verify" icon="pi pi-check" class="p-button-success p-button-sm mr-2" 
+                  (click)="verify(complaint)" [disabled]="complaint.status !== 'RESOLVED'"></button>
+          <button pButton label="Reject" icon="pi pi-times" class="p-button-danger p-button-sm" 
+                  (click)="reject(complaint)" [disabled]="complaint.status !== 'RESOLVED' || !selectedTeam"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-card>

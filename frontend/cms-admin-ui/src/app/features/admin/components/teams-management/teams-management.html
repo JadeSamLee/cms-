@@ -1,0 +1,36 @@
+<p-card header="Support Teams Management">
+  <form [formGroup]="teamForm" (ngSubmit)="createTeam()" class="mb-6">
+    <div class="grid p-fluid">
+      <div class="col-6">
+        <p-floatlabel>
+          <input pInputText id="name" formControlName="name" />
+          <label for="name">Team Name *</label>
+        </p-floatlabel>
+      </div>
+      <div class="col-6">
+        <p-floatlabel>
+          <input pInputText id="description" formControlName="description" />
+          <label for="description">Description</label>
+        </p-floatlabel>
+      </div>
+      <div class="col-12">
+        <button pButton type="submit" label="Create Team" [disabled]="teamForm.invalid"></button>
+      </div>
+    </div>
+  </form>
+
+  <p-table [value]="teams">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-team>
+      <tr>
+        <td>{{ team.name }}</td>
+        <td>{{ team.description || '—' }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-card>

@@ -1,1 +1,53 @@
-/* You can add global styles to this file, and also import other style files */
+/* Custom Palette */
+:root {
+  --primary-color: #800000;
+  --primary-dark: #982B1C;
+  --surface-ground: #F2E8C6;
+  --surface-card: #DAD4B5;
+  --text-color: #333333;
+}
+
+/* PrimeNG Overrides */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--surface-ground);
+}
+
+.p-menubar {
+  background: var(--primary-color);
+  border: none;
+}
+
+.p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link .p-menuitem-text {
+  color: white;
+}
+
+.p-button {
+  background: var(--primary-color);
+  border: none;
+}
+
+.p-button:hover {
+  background: var(--primary-dark);
+}
+
+.p-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.p-datatable .p-datatable-header {
+  background: var(--primary-color);
+  color: white;
+}
+
+.p-datatable .p-datatable-tbody > tr:nth-child(even) {
+  background: #f9f5f0;
+}
+
+.layout-main {
+  padding: 2rem;
+  min-height: calc(100vh - 64px);
+}
